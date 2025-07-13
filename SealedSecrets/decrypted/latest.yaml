@@ -1,0 +1,25 @@
+{
+  "kind": "Secret",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "dummy-secret",
+    "namespace": "dummy-namespace",
+    "creationTimestamp": null,
+    "annotations": {
+      "sealedsecrets.bitnami.com/cluster-wide": "true"
+    },
+    "ownerReferences": [
+      {
+        "apiVersion": "bitnami.com/v1alpha1",
+        "kind": "SealedSecret",
+        "name": "dummy-secret",
+        "uid": "",
+        "controller": true
+      }
+    ]
+  },
+  "data": {
+    "secret": "aGk="
+  },
+  "type": "Opaque"
+}
