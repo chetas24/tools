@@ -1,0 +1,20 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: dummy-secret
+  namespace: dummy-namespace
+spec:
+  encryptedData:
+    secret: AQAbcndnpWJJoRd5kMhgdmOK3v5k2FDQh7HUGfnUvY4VrzZe7eUmzlOciS9f29Dbqm5IsreR8Gs78In5KgVQzjgftJY1Y0odBpt6pzvCeIvuW+55h74/e0mpKQNIsOLC8RZySH1VAgYRk56Nj/3XzntknQ4ejcA0GpspcO1GoQlycVloT6bJEoW84Gkl/Uo46lJjJ34ZUmhpc1spH8nxc4bCB9AjZh+SehKeMYTAZrcJHNrz/ZwC30/G0kdsx3f4YAYLJficya1YZoFsQISa8SRhyyw3LR0TcEn234yCSTL4wCnxzApHobf4TOuXUvPwI29X2NQqfL+fJRzFXAuVPCs6Q7d/lMsAD6bsmRqDxNb6duU=
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: dummy-secret
+      namespace: dummy-namespace
+    type: Opaque
