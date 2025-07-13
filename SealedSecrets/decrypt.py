@@ -3,8 +3,6 @@ import sys
 import subprocess
 from pathlib import Path
 
-
-
 # --- Setup base directories (relative to script location) ---
 IS_FROZEN = getattr(sys, 'frozen', False)
 BASE_DIR = Path(sys.executable).parent if IS_FROZEN else Path(__file__).parent
@@ -26,7 +24,7 @@ def log_debug(msg):
 def print_colored(msg, color_code):
     print(f"\033[{color_code}m{msg}\033[0m")
 
-print_colored("🔓 Sealed Secrets Recovery Tool", "1;33")
+print_colored("\n                               🔓 Sealed Secrets Decrypter", "1;35")
 print("-----------------------------------------")
 print_colored("⚠️  This tool only works if the private key matches the certificate used to seal.", "1;33")
 print()
@@ -49,12 +47,12 @@ if not sealed_files:
     print_colored(f"❌ No SealedSecret YAMLs found in {SEALED_DIR}", "1;31")
     sys.exit(1)
 
-print_colored("📄 Available sealed secrets:", "1;33")
+print_colored("📄 Available sealed secrets:", "1;34")
 for i, file in enumerate(sealed_files, 1):
     print(f"  [{i}] {file.name}")
 
 try:
-    sealed_choice = int(input("Select sealed secret file to decrypt: "))
+    sealed_choice = int(input("\nSelect sealed secret file to decrypt: "))
     if sealed_choice < 1 or sealed_choice > len(sealed_files):
         raise ValueError
 except ValueError:
@@ -76,12 +74,12 @@ if not key_files:
     print_colored(f"❌ No .key files found in {KEY_DIR}", "1;31")
     sys.exit(1)
 
-print_colored("🔐 Available private keys:", "1;33")
+print_colored("\n🔐 Available private keys:", "1;34")
 for i, key in enumerate(key_files, 1):
     print(f"  [{i}] {key.name}")
 
 try:
-    key_choice = int(input("Select private key to use: "))
+    key_choice = int(input("\nSelect private key to use: "))
     if key_choice < 1 or key_choice > len(key_files):
         raise ValueError
 except ValueError:
@@ -125,4 +123,6 @@ output_path = OUTPUT_DIR / "latest.yaml"
 output_path.write_text(decrypted_output)
 log_debug(f"Decrypted YAML saved to {output_path}")
 
+print_colored(f"\n--------------Make sure to copy the decrypted value---------------", "1;36")
 print_colored(f"\n💾 Decrypted secret saved to: {output_path}", "1;32")
+print()

@@ -28,7 +28,9 @@ def log_debug(msg):
 def print_colored(msg, color_code):
     print(f"\033[{color_code}m{msg}\033[0m")
 
-print_colored("🔐 Sealed Secrets Generator (YAML Mode)", "1;33")  # Yellow
+print_colored("\n                             🔐 Sealed Secrets Generator", "1;35")
+print("-----------------------------------------")
+print_colored("⚠️  This tool only works if you have a specific folder structure with certificate and kubeseal.exe.", "1;33")
 
 # Check kubeseal binary
 log_debug(f"Looking for kubeseal: {KUBESEAL_CMD}")
@@ -47,7 +49,7 @@ if not cert_files:
     sys.exit(1)
 
 # Select certificate
-print("\n📄 Available certificates:")
+print_colored(f"\n📄 Available certificates:", "1;34")
 for i, cert in enumerate(cert_files, 1):
     print(f"  [{i}] {cert.name}")
 
@@ -108,7 +110,8 @@ except subprocess.CalledProcessError as e:
     sys.exit(1)
 
 # Output result
-print("\n✅ SealedSecret YAML:")
+print_colored(f"\n🔍 sealing secret using '{cert_path.name}'...", "1;33")
+print_colored("✅ SealedSecret:", "1;32")
 print("-------------------------------------------")
 print(sealed_output)
 print("-------------------------------------------")
@@ -120,3 +123,4 @@ with open(sealed_file, "w") as f:
 
 log_debug(f"Sealed secret saved to: {sealed_file}")
 print_colored(f"\n💾 YAML saved to: {sealed_file}", "1;32")  # Green
+print()
