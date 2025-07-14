@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thanos Secret Toolkit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>🛡️ Thanos Secret Toolkit</h1>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+    </header>
+
+    <!-- Seal Secret -->
+    <form action="/seal" method="post">
+        <h2>🔐 Seal Secret</h2>
+
+        <label for="secret_value">Secret Value:</label>
+        <input type="text" name="secret_value" id="secret_value" required>
+
+        <label for="cert_name">Certificate:</label>
+        <select name="cert_name" id="cert_name" required>
+            {% for cert in certs %}
+                <option value="{{ cert }}">{{ cert }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Seal">
+    </form>
+
+    <!-- Decrypt Secret -->
+    <form action="/decrypt" method="post">
+        <h2>🔓 Decrypt Secret</h2>
+
+        <label for="sealed_file">Sealed Secret YAML File:</label>
+        <select name="sealed_file" id="sealed_file" required>
+            {% for sealed in sealed_files %}
+                <option value="{{ sealed }}">{{ sealed }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="key_file">Private Key:</label>
+        <select name="key_file" id="key_file" required>
+            {% for key in key_files %}
+                <option value="{{ key }}">{{ key }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Decrypt">
+    </form>
+
+    <!-- Base64 Decode -->
+    <form action="/decode" method="post">
+        <h2>📦 Base64 Decode</h2>
+
+        <label for="encoded_string">Encoded String:</label>
+        <textarea name="encoded_string" id="encoded_string" required></textarea>
+
+        <input type="submit" value="Decode">
+    </form>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        };
+    </script>
+
+</body>
+</html>

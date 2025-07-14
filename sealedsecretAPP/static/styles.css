@@ -1,0 +1,426 @@
+/* Base Styles with Blue Theme */
+:root {
+    --primary: #2563eb;        /* Vibrant blue */
+    --primary-light: #3b82f6; /* Lighter blue */
+    --secondary: #06b6d4;      /* Cyan accent */
+    --dark: #1e293b;           /* Dark blue-gray */
+    --darker: #0f172a;         /* Darker blue */
+    --light: #f8fafc;          /* Light gray */
+    --success: #10b981;        /* Emerald green */
+    --warning: #f59e0b;        /* Amber */
+    --danger: #ef4444;         /* Red */
+    --card-bg-light: #ffffff;  /* White for light theme cards */
+    --card-bg-dark: #1e293b;   /* Dark blue-gray for dark theme cards */
+    --text-dark: #1e293b;      /* Dark text */
+    --text-light: #f8fafc;     /* Light text */
+    --border-light: #e2e8f0;   /* Light border */
+    --border-dark: #475569;    /* Dark border */
+    --input-bg-light: #ffffff; /* Input background light */
+    --input-bg-dark: #334155;  /* Input background dark */
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08); /* More prominent shadow */
+    --shadow-dark: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Light Theme (default) */
+body {
+    --background: #f1f5f9;
+    --card-bg: var(--card-bg-light);
+    --text: var(--text-dark);
+    --input-bg: var(--input-bg-light);
+    --border: var(--border-light);
+    --shadow: var(--shadow-light);
+}
+
+/* Dark Theme */
+body.dark-mode {
+    --background: var(--darker); /* Use darker for overall background */
+    --card-bg: var(--card-bg-dark);
+    --text: var(--text-light);
+    --input-bg: var(--input-bg-dark);
+    --border: var(--border-dark);
+    --shadow: var(--shadow-dark);
+}
+
+/* Apply Themes */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, var(--primary) 0%, var(--dark) 70%);
+    opacity: 0.1;
+    animation: backgroundPulse 10s infinite alternate ease-in-out;
+}
+
+@keyframes backgroundPulse {
+    0% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.05); opacity: 0.15; }
+    100% { transform: scale(1); opacity: 0.1; }
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 20px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+/* Header */
+header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0; /* Adjusted padding */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    font-size: 2.2rem; /* Slightly larger icon */
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* For icon positioning */
+    overflow: hidden; /* Hide overflowing icon */
+}
+
+.theme-toggle:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.theme-toggle i {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.theme-toggle .fa-sun {
+    transform: translateY(100%); /* Start off-screen below */
+    opacity: 0;
+}
+
+body.dark-mode .theme-toggle .fa-moon {
+    transform: translateY(-100%); /* Move off-screen above */
+    opacity: 0;
+}
+
+body.dark-mode .theme-toggle .fa-sun {
+    transform: translateY(0); /* Move into view */
+    opacity: 1;
+}
+
+
+/* Form Elements - Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 25px; /* Space between forms */
+    transition: all 0.3s ease;
+}
+
+.section-title {
+    font-weight: 600;
+    margin-bottom: 20px; /* More space below title */
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem; /* Slightly larger title */
+}
+
+/* Input and Select Styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text); /* Ensure label color changes with theme */
+}
+
+.input-container {
+    margin-bottom: 20px; /* Space below inputs */
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border); /* Use border variable */
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none; /* Remove default outline */
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-light); /* Highlight on focus */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Subtle glow */
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.dark-mode select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2393c5fd'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"); /* Lighter arrow for dark mode */
+}
+
+textarea {
+    min-height: 100px; /* Slightly reduced height */
+    resize: vertical;
+}
+
+/* Buttons */
+.button-group {
+    margin-top: 25px; /* More space above buttons */
+    display: flex;
+    gap: 15px; /* Increased gap */
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.btn {
+    padding: 12px 25px; /* Increased padding for larger buttons */
+    border-radius: 8px;
+    font-weight: 600; /* Bolder text */
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    display: inline-flex; /* Use inline-flex for button content alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); /* Initial shadow */
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4); /* Enhanced shadow on hover */
+}
+
+.btn-secondary {
+    background: var(--background); /* Match background for subtle look */
+    color: var(--primary);
+    border: 1px solid var(--primary); /* Primary colored border */
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Result Page Styles */
+.result-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-top: 20px; /* Space from header */
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border); /* Separator */
+    padding-bottom: 15px;
+}
+
+.success-icon {
+    font-size: 2.5rem; /* Larger icon */
+    color: var(--success);
+}
+
+.result-header h2 {
+    margin: 0;
+    font-size: 1.8rem; /* Larger heading */
+    color: var(--text);
+}
+
+.result-content {
+    margin-bottom: 30px;
+}
+
+.result-label {
+    font-weight: 600; /* Bolder label */
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.output {
+    white-space: pre-wrap;
+    word-wrap: break-word;  /* Added: Ensures long words break to the next line */
+    word-break: break-all;  /* Added: Breaks words at any character if necessary */
+    background: var(--input-bg); /* Use input background for consistency */
+    padding: 20px; /* More padding */
+    border-radius: 8px;
+    border-left: 5px solid var(--primary); /* Thicker border */
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text);
+}
+.result-actions {
+    display: flex;
+    justify-content: flex-start; /* Align go back button to left */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container, header {
+        padding: 0 15px; /* Adjust padding for smaller screens */
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .theme-toggle {
+        align-self: flex-end; /* Keep toggle to the right */
+        margin-top: -50px; /* Adjust if needed to not overlap with h1 */
+    }
+
+    .card {
+        padding: 20px; /* Smaller padding for cards */
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .result-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .output {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .logo-icon {
+        font-size: 1.8rem;
+    }
+
+    .theme-toggle {
+        width: 35px;
+        height: 35px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}

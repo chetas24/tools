@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanos Secret Toolkit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <header>
+        <div class="logo">
+            <h1 class="logo-icon">🛡️</h1>
+            <h1>Thanos Secret Toolkit</h1>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </button>
+    </header>
+
+    <main class="container">
+        <form action="/seal" method="post" class="card section">
+            <h2 class="section-title">🔐 Seal Secret</h2>
+
+            <label for="secret_value">Secret Value:</label>
+            <div class="input-container">
+                <input type="text" name="secret_value" id="secret_value" required placeholder="Enter secret value">
+            </div>
+
+            <label for="cert_name">Certificate:</label>
+            <div class="input-container">
+                <select name="cert_name" id="cert_name" required>
+                    {% for cert in certs %}
+                        <option value="{{ cert }}">{{ cert }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Seal" class="btn btn-primary">
+            </div>
+        </form>
+
+        <form action="/decrypt" method="post" class="card section">
+            <h2 class="section-title">🔓 Decrypt Secret</h2>
+
+            <label for="sealed_file">Sealed Secret YAML File:</label>
+            <div class="input-container">
+                <select name="sealed_file" id="sealed_file" required>
+                    {% for sealed in sealed_files %}
+                        <option value="{{ sealed }}">{{ sealed }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <label for="key_file">Private Key:</label>
+            <div class="input-container">
+                <select name="key_file" id="key_file" required>
+                    {% for key in key_files %}
+                        <option value="{{ key }}">{{ key }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Decrypt" class="btn btn-primary">
+            </div>
+        </form>
+
+        <form action="/decode" method="post" class="card section">
+            <h2 class="section-title">📦 Base64 Decode</h2>
+
+            <label for="encoded_string">Encoded String:</label>
+            <div class="input-container">
+                <textarea name="encoded_string" id="encoded_string" required placeholder="Enter Base64 encoded string"></textarea>
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Decode" class="btn btn-primary">
+            </div>
+        </form>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

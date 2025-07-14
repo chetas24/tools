@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result - Thanos Secret Toolkit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>🛡️ Thanos Secret Toolkit</h1>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+    </header>
+
+    <h2>✅ Operation Complete</h2>
+
+    <div class="output">
+        {{ result }}
+    </div>
+
+    <br>
+    <a href="/">← Go Back</a>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        };
+    </script>
+
+</body>
+</html>
