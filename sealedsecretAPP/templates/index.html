@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanos Secret Toolkit</title>
+    <title>Sealed Secret ToolKit</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -12,8 +12,7 @@
 
     <header>
         <div class="logo">
-            <h1 class="logo-icon">🛡️</h1>
-            <h1>Thanos Secret Toolkit</h1>
+            <i class="icon icon-shield"></i> <h1>Sealed Secret Toolkit</h1>
         </div>
         <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
             <i class="fas fa-moon"></i>
@@ -23,9 +22,7 @@
 
     <main class="container">
         <form action="/seal" method="post" class="card section">
-            <h2 class="section-title">🔐 Seal Secret</h2>
-
-            <label for="secret_value">Secret Value:</label>
+            <h2 class="section-title"><i class="icon icon-lock"></i> Seal Secret</h2> <label for="secret_value">Secret Value:</label>
             <div class="input-container">
                 <input type="text" name="secret_value" id="secret_value" required placeholder="Enter secret value">
             </div>
@@ -45,9 +42,7 @@
         </form>
 
         <form action="/decrypt" method="post" class="card section">
-            <h2 class="section-title">🔓 Decrypt Secret</h2>
-
-            <label for="sealed_file">Sealed Secret YAML File:</label>
+            <h2 class="section-title"><i class="icon icon-unlock"></i> Decrypt Secret</h2> <label for="sealed_file">Sealed Secret YAML File:</label>
             <div class="input-container">
                 <select name="sealed_file" id="sealed_file" required>
                     {% for sealed in sealed_files %}
@@ -71,9 +66,7 @@
         </form>
 
         <form action="/decode" method="post" class="card section">
-            <h2 class="section-title">📦 Base64 Decode</h2>
-
-            <label for="encoded_string">Encoded String:</label>
+            <h2 class="section-title"><i class="icon icon-box"></i> Base64 Decode</h2> <label for="encoded_string">Encoded String:</label>
             <div class="input-container">
                 <textarea name="encoded_string" id="encoded_string" required placeholder="Enter Base64 encoded string"></textarea>
             </div>

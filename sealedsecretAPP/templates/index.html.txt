@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thanos Secret Toolkit</title>
+    <title>Sealed Secret Toolkit</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 
     <header>
-        <h1>🛡️ Thanos Secret Toolkit</h1>
+        <h1>🛡️ Sealed Secret Toolkit</h1>
         <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
     </header>
 
